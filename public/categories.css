@@ -1,0 +1,12 @@
+﻿table {
+    font-size: 125%;
+    border-collapse: collapse;
+
+}
+tr {
+    border-bottom: 1px solid #ddd;
+    border-spacing: 15px 0;
+}
+td {
+    padding-right: 10px;
+}

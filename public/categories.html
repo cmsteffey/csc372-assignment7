@@ -4,21 +4,7 @@
     <meta charset="UTF-8">
     <title>Categories</title>
     <link rel="stylesheet" href="/nav.css">
-    <style>
-        table {
-            font-size: 125%;
-            border-collapse: collapse;
-
-        }
-        tr {
-            border-bottom: 1px solid #ddd;
-            border-spacing: 15px 0;
-        }
-        td {
-            padding-right: 10px;
-        }
-
-    </style>
+    <link rel="stylesheet" href="/categories.css">
 </head>
 <body>
 <nav>
@@ -53,6 +39,11 @@
     </table>
 </main>
 <script>
+    document.querySelector("input").addEventListener("keyup", (e)=>{
+        if (e.key === "Enter") {
+            location = "/jokeCategory.html?category=" + e.currentTarget.value;
+        }
+    })
     fetch("/jokebook/categories").then(res => res.ok ? res.json() : []).then(categories => {
         let tableBody = document.getElementById("categories").querySelector("tbody");
         console.log(categories);
@@ -67,6 +58,7 @@
             row.insertCell().textContent = category.num
         }
     })
+
 </script>
 </body>
 </html>
