@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Categories</title>
+    <link rel="stylesheet" href="/nav.css">
+    <style>
+        table {
+            font-size: 125%;
+            border-collapse: collapse;
+
+        }
+        tr {
+            border-bottom: 1px solid #0F0;
+            border-spacing: 15px 0;
+        }
+
+    </style>
+</head>
+<body>
+<nav>
+    <span id="headerLogo">
+        Jokebook
+    </span>
+    <a href="/">
+        Home
+    </a>
+    <a href="/categories.html">
+        Categories
+    </a>
+    <a href="/newJoke.html">
+        Add a New Joke
+    </a>
+</nav>
+<main>
+    <label>
+        Search:
+        <input type="text" placeholder="Category search">
+    </label><br>
+    <table id="categories">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Number of Jokes</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</main>
+<script>
+    fetch("/jokebook/categories").then(res => res.ok ? res.json() : []).then(categories => {
+        let tableBody = document.getElementById("categories").querySelector("tbody");
+        console.log(categories);
+        for (let category of categories) {
+            let row = tableBody.insertRow();
+            console.log(row);
+            let nameCell = row.insertCell();
+            let link = document.createElement("a");
+            link.href = "/jokeCategory.html?category=" + category.category;
+            link.innerText = category.category;
+            nameCell.appendChild(link);
+            row.insertCell().textContent = category.num
+        }
+    })
+</script>
+</body>
+</html>

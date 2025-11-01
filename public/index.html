@@ -1,0 +1,37 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <title>Jokebook</title>
+    <link rel="stylesheet" href="/nav.css">
+</head>
+<body>
+    <nav>
+        <span id="headerLogo">
+            Jokebook
+        </span>
+        <a href="/">
+            Home
+        </a>
+        <a href="/categories.html">
+            Categories
+        </a>
+        <a href="/newJoke.html">
+            Add a New Joke
+        </a>
+    </nav>
+    <main>
+        <h1>Jokebook</h1>
+        <span id="joke"></span>
+    </main>
+    <script>
+        fetch("/jokebook/random").then(res => res.json()).then((data) => {
+
+           document.getElementById("joke").innerText = data.setup + "\n" + data.delivery;
+
+        });
+    </script>
+</body>
+</html>

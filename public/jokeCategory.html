@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Joke Category</title>
+    <style>
+        table {
+            border-spacing: 10px 0;
+            border-collapse: collapse;
+
+        }
+    </style>
+    <link rel="stylesheet" href="/nav.css">
+</head>
+<body>
+
+    <nav>
+        <span id="headerLogo">
+            Jokebook
+        </span>
+        <a href="/">
+            Home
+        </a>
+        <a href="/categories.html">
+            Categories
+        </a>
+        <a href="/newJoke.html">
+            Add a New Joke
+        </a>
+    </nav>
+    <main>
+        <table id="jokes">
+            <thead>
+                <tr>
+                    <th>Setup</th>
+                    <th>Delivery</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </main>
+    <script>
+        window.category = URL.parse(location).searchParams.get("category");
+        if(!window.category){
+            location.href = "/index.html";
+        }
+        let h1 = document.createElement('h1');
+        h1.innerText = "Jokes in Category \"" + category + "\"";
+        document.querySelector("main").prepend(h1)
+        let jokesTableBody = document.getElementById('jokes').querySelector("tbody");
+        fetch("/jokebook/category/" + category).then(response => response.ok ? response.json() : []).then(data => {
+            if(data.length === 0){
+                let p = document.createElement("p");
+                p.textContent = "There are no jokes in this category.";
+                jokesTableBody.parentElement.parentElement.appendChild(p);
+                jokesTableBody.parentElement.remove();
+                return;
+            }
+            for(let joke of data){
+               let row = jokesTableBody.insertRow();
+               row.insertCell().textContent = joke.setup;
+               row.insertCell().textContent = joke.delivery;
+            }
+        });
+    </script>
+</body>
+</html>

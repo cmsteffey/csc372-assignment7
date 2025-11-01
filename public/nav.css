@@ -1,0 +1,23 @@
+﻿nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 4em;
+    background-color: #ddd;
+    align-items: center;
+    gap: 3ch;
+}
+nav a, nav span {
+    font-size: 1.5em;
+}
+main {
+    margin: 10px;
+    width: calc(100% - 20px);
+}
+#headerLogo {
+    margin-left: 2ch;
+}
+body, html {
+    margin: 0;
+}
