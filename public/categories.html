@@ -1,4 +1,11 @@
 ﻿<!DOCTYPE html>
+<!--
+  Name: Sasha Steffey
+  Date: 11-01-2025
+  CSC 372-01
+
+  This is the categories page for my jokebook. It displays each category and number of jokes in the category.
+-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -38,26 +45,7 @@
         </tbody>
     </table>
 </main>
-<script>
-    document.querySelector("input").addEventListener("keyup", (e)=>{
-        if (e.key === "Enter") {
-            location = "/jokeCategory.html?category=" + e.currentTarget.value;
-        }
-    })
-    fetch("/jokebook/categories").then(res => res.ok ? res.json() : []).then(categories => {
-        let tableBody = document.getElementById("categories").querySelector("tbody");
-        console.log(categories);
-        for (let category of categories) {
-            let row = tableBody.insertRow();
-            console.log(row);
-            let nameCell = row.insertCell();
-            let link = document.createElement("a");
-            link.href = "/jokeCategory.html?category=" + category.category;
-            link.innerText = category.category;
-            nameCell.appendChild(link);
-            row.insertCell().textContent = category.num
-        }
-    })
+<script src="/categories.js">
 
 </script>
 </body>

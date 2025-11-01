@@ -1,4 +1,11 @@
 ﻿<!doctype html>
+<!--
+  Name: Sasha Steffey
+  Date: 11-01-2025
+  CSC 372-01
+
+  This is the index page for my jokebook. It displays a random joke and has a navbar.
+-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -26,12 +33,8 @@
         <h1>Jokebook</h1>
         <span id="joke"></span>
     </main>
-    <script>
-        fetch("/jokebook/random").then(res => res.json()).then((data) => {
+    <script src="/index.js">
 
-           document.getElementById("joke").innerText = data.setup + "\n" + data.delivery;
-
-        });
     </script>
 </body>
 </html>
